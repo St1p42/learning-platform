@@ -1,5 +1,5 @@
 <template>
-  <div class="homepage" v-bind:style="{backgroundImage: background}">
+  <div class="homepage" :style="{ backgroundImage: `url(${backgroundUrl})` }">
       <div class="navbar">
         <div class="left-section">
           <span class="company-name">Coderillas</span>
@@ -11,15 +11,23 @@
           <span class="nav-text" id ="blog">Blog</span>
         </div>
       </div>
+    <section class="middleText">
+          <span> Подготовься к экзамену, </span>
+          <span> учись эффективно!</span>
+    </section>
   </div>
+
+
+
+
 </template>
 
 <script>
-import background from '@/assets/images/image_book.png'
+import backgroundUrl from '@/assets/images/image_book.png'
 export default {
   data() {
     return {
-      background,
+      backgroundUrl
     }
   }
 }
@@ -27,11 +35,11 @@ export default {
 
 <style>
 .navbar {
+  position: sticky;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: #333;
   color: #fff;
   padding: 10px 20px;
   width: 100%; /* Set width to 100% */
@@ -39,10 +47,8 @@ export default {
 }
 
 .company-name {
-  color: var(--white-primary, #FFF);
-  font-family: Poppins;
-  font-size: 40px;
-  font-style: normal;
+  font-family: Poppins,fantasy;
+  font-size: 55px;
   font-weight: 500;
   line-height: normal;
   margin-left: 70px;
@@ -52,10 +58,30 @@ export default {
   color: #fff;
   margin-right: 60px;
   cursor: pointer;
-  font-size: 20px
+  font-size: 25px
 }
 #blog {
   margin-right: 150px;
+}
+
+.homepage {
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.middleText {
+  flex-direction: column;
+  color: #FFF;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 64px;
+  font-weight: 1500;
+  line-height: normal;
 }
 
 </style>

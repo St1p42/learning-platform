@@ -21,5 +21,5 @@ from learningPlatformApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', include('learningPlatformApp.urls')),
+    path('toefl/', include('learningPlatformApp.urls')),
 ]

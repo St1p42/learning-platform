@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ToeflView from "@/views/ToeflView.vue";
 import ReadingToefl from "@/views/ReadingToefl.vue";
+import { Api } from "@/apis/apiService"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,7 +25,8 @@ const router = createRouter({
         // Code to be executed before entering /specific-path
         console.log('Before entering /specific-path');
         // Perform your necessary actions here
-
+        let passageModel = Api.getToeflReading()
+        console.log(passageModel)
         // Call next() to continue with the route navigation
         next();
       }

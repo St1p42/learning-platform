@@ -1,32 +1,15 @@
-import type { ReportTableModel } from "@/models/ReportTableModel"
-import router from "@/router"
+import type {PassageModel} from "../../models/PassageModel";
 
 class Api {
-    baseUrl: string = "http://localhost:5000/"
-    baseEmployee: string = this.baseUrl + "employee"
-    baseQuestion: string = this.baseUrl + "question"
-
-    async getRankingTables(): Promise<ReportTableModel[]> {
-        return await fetch(`${this.baseEmployee}/`, {
-            headers: {
-                Authorization: "Bearer " + localStorage.jwtToken,
-            },
-        })
-            .then(async (response) => {
-                if (response.status != 200) {
-                    const errorMessage = await response.text()
-                    throw new Error(errorMessage)
-                }
-                return response.json()
-            })
-            .then((rankingTables) => {
-                console.log(rankingTables)
-                return rankingTables
-            })
-            .catch((e) => {
-                alert(e)
-                router.push({ name: "hr-home" })
-            })
+    async getToeflReading(): Promise<PassageModel | void> {
+        return await fetch(`http://127.0.0.1:8000/api/tests/toefl/reading`)
+              .then(response => response.json())
+              .then(data => {
+                  return data as PassageModel
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
     }
 }
 

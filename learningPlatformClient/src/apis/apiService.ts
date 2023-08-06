@@ -5,6 +5,7 @@ class Api {
         return await fetch(`http://127.0.0.1:8000/api/tests/toefl/reading`)
               .then(response => response.json())
               .then(data => {
+                  console.log(data)
                   return data as PassageModel
               })
               .catch(error => {

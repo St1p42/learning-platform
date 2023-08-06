@@ -39,6 +39,7 @@ import customImage from '@/assets/images/custom.png'
 import ortImage from '@/assets/images/ort.png'
 import toeflImage from '@/assets/images/toefl.png'
 import router from '../router'
+import { Api } from "@/apis/apiService"
 
 export default {
   data() {

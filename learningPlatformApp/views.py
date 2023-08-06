@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.http import JsonResponse
-from ai_scripts import toefl_reading_ai
+
+from django.http import HttpResponse
+from ai_scripts import toeft_reading_script
 
 
-def hello_world(request):
-    generated_reading_passage = toefl_reading_ai.generate_passage()
-    print(generated_reading_passage)
-    return JsonResponse(generated_reading_passage)
+def getToeflTest(request):
+    response = toeft_reading_script.getToeflTest()
+    return HttpResponse(response, content_type="application/json")

@@ -1,5 +1,5 @@
 export interface Question {
     question: string
-    option: string[]
+    options: string[]
     answer: string
 }

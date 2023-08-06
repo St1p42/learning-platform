@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ToeflView from "@/views/ToeflView.vue";
 import ReadingToefl from "@/views/ReadingToefl.vue";
 import { Api } from "@/apis/apiService"
+import dataManager from '@/apis/dataManager';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,13 +23,20 @@ const router = createRouter({
       name: 'reading',
       component: ReadingToefl,
       beforeEnter: (to, from, next) => {
-        // Code to be executed before entering /specific-path
+        // // Code to be executed before entering /specific-path
         console.log('Before entering /specific-path');
-        // Perform your necessary actions here
-        let passageModel = Api.getToeflReading()
-        console.log(passageModel)
-        // Call next() to continue with the route navigation
-        next();
+        Api.getToeflReading()
+        .then(data => {
+          // Data has been fetched, proceed with the route
+          // You can set data to your component or perform other actions
+          if (data) dataManager.setData(data)
+          next();
+        })
+        .catch(error => {
+          // Handle errors if necessary
+          console.error('Error:', error);
+          next(false); // Prevent navigation
+        });
       }
     },
   ]

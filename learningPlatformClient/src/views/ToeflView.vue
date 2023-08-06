@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <h1 v-if="clicked">Please, wait. AI generates the passage.</h1>
+  <div class="container" v-if="!clicked">
     <div class="left">
        <div class="image" :style="{ backgroundImage: `url(${toeflSection})` }"> </div>
        <div class="sections">
@@ -21,16 +22,19 @@
 <script>
 import router from '../router'
 import toeflSection from '@/assets/images/toefl_sections.png'
+let clicked = false;
 export default {
   data() {
     return {
       handleReading,
-      toeflSection
+      toeflSection,
+      clicked: false
     }
   }
 }
 
 function handleReading() {
+  this.clicked = !this.clicked;
   router.push('/toefl/reading')
 }
 
